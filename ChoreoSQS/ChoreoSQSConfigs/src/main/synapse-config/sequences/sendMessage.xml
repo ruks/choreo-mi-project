@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sequence name="sendMessage" trace="disable" xmlns="http://ws.apache.org/ns/synapse">
+    <log level="custom">
+        <property name="sendMessage" value="Before send message "/>
+    </log>
+    <amazonsqs.init/>
+    <amazonsqs.sendMessage configKey="AMAZON_SQS_CONNECTION_1">
+        <queueId>{$ctx:queueId}</queueId>
+        <queueName>{$ctx:queueName}</queueName>
+        <messageBody>{$ctx:target_property}</messageBody>
+    </amazonsqs.sendMessage>
+</sequence>

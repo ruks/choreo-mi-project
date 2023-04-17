@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sequence name="ReceiveAndForwardMessage" trace="disable" xmlns="http://ws.apache.org/ns/synapse">
+    <amazonsqs.init/>
+    <amazonsqs.receiveMessage configKey="AMAZON_SQS_CONNECTION_1">
+        <maxNumberOfMessages>5</maxNumberOfMessages>
+        <queueId>{$ctx:queueId}</queueId>
+        <queueName>{$ctx:queueName}</queueName>
+    </amazonsqs.receiveMessage>
+    <property expression="json-eval($.ReceiveMessageResponse.ReceiveMessageResult.Message.Body)" name="messageBody" scope="default" type="STRING"/>
+    <payloadFactory media-type="xml">
+        <format>
+            <soapenv:Envelope xmlns:soapenv="http://www.w3.org/2003/05/soap-envelope">
+                <soapenv:Body>$1</soapenv:Body>
+            </soapenv:Envelope>
+        </format>
+        <args>
+            <arg evaluator="xml" expression="$ctx:messageBody" xmlns:ns="http://org.apache.synapse/xsd"/>
+        </args>
+    </payloadFactory>
+    <log level="custom">
+        <property name="ReceiveAndForwardMessage" value="Before send message "/>
+    </log>
+    <header name="Action" scope="default" value="urn:getQuote"/>
+    <call>
+        <endpoint>
+            <http method="post" uri-template="https://eo9p1w3f4v05cq3.m.pipedream.net/">
+                <suspendOnFailure>
+                    <initialDuration>-1</initialDuration>
+                    <progressionFactor>1</progressionFactor>
+                </suspendOnFailure>
+                <markForSuspension>
+                    <retriesBeforeSuspension>0</retriesBeforeSuspension>
+                </markForSuspension>
+            </http>
+        </endpoint>
+    </call>
+</sequence>
