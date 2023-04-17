@@ -1,24 +1,13 @@
 openapi: 3.0.1
 info:
-  title: SQSAPI
-  description: API Definition of SQSAPI
+  title: HelloWorld
+  description: API Definition of HelloWorld
   version: 1.0.0
 servers:
-  - url: "http://localhost:8290/sqs"
+  - url: "http://localhost:8290/HelloWorld"
 paths:
-  /sendToQueue:
-    post:
-      requestBody:
-        description: Sample Payload
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                payload:
-                  type: object
-        required: false
+  /:
+    get:
       responses:
         default:
           description: Default response
-
