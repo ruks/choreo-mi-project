@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<api context="/sqs" name="SQSAPI" xmlns="http://ws.apache.org/ns/synapse">
+    <resource methods="POST" uri-template="/sendToQueue">
+        <inSequence>
+            <property name="queueName" scope="default" type="STRING" value="ChoreoTestSQS"/>
+            <property name="queueId" scope="default" type="STRING" value="494315182757"/>
+            <property name="queueURL" scope="default" type="STRING" value="https://sqs.ap-southeast-2.amazonaws.com/494315182757/ChoreoTestSQS"/>
+            <sequence key="buildMessage"/>
+            <log level="custom">
+                <property expression="$ctx:queueURL" name="queueURL"/>
+            </log>
+            <log level="custom">
+                <property expression="$ctx:queueId" name="queueId"/>
+            </log>
+            <sequence key="sendMessage"/>
+            <sequence key="ReceiveAndForwardMessage"/>
+            <respond/>
+        </inSequence>
+        <outSequence/>
+        <faultSequence/>
+    </resource>
+</api>
