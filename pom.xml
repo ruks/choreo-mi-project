@@ -12,6 +12,7 @@
     <module>HelloDS</module>
     <module>HelloWorldIntegrationConfigs</module>
     <module>HelloWorldIntegrationCompositeExporter</module>
+    <module>HelloWorldSecondryApp</module>
   </modules>
   <scm>
     <connection>scm:git:https://github.com/username/repository.git</connection>
