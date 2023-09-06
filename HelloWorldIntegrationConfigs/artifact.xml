@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?><artifacts>
+    <artifact name="HelloWorldIntegration" groupId="com.example.api" version="1.0.0" type="synapse/api" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/api/HelloWorldIntegration.xml</file>
+    </artifact>
+    <artifact name="HelloWorldIntegration_swagger" groupId="com.example.metadata" version="1.0.0" type="synapse/metadata" serverRole="EnterpriseServiceBus">
+        <file>src/main/resources/metadata/HelloWorldIntegration_swagger.yaml</file>
+    </artifact>
+    <artifact name="HelloWorldIntegration_metadata" groupId="com.example.metadata" version="1.0.0" type="synapse/metadata" serverRole="EnterpriseServiceBus">
+        <file>src/main/resources/metadata/HelloWorldIntegration_metadata.yaml</file>
+    </artifact>
+</artifacts>
